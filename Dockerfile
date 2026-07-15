@@ -16,10 +16,10 @@ COPY --from=build /app/public/build ./public/build
 
 RUN composer install --no-dev --optimize-autoloader
 
-RUN touch database/database.sqlite \
+RUN cp .env.example .env \
+    && php artisan key:generate --force \
+    && touch database/database.sqlite \
     && php artisan migrate --force
-
-CMD ["/entrypoint.sh"]
 
 EXPOSE 8080
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
