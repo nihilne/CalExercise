@@ -17,6 +17,7 @@ COPY --from=build /app/public/build ./public/build
 RUN composer install --no-dev --optimize-autoloader
 
 RUN touch database/database.sqlite \
+    && cp .env.example .env \
     && php artisan key:generate \
     && php artisan migrate --force
 
