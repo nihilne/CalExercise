@@ -21,5 +21,5 @@ RUN touch database/database.sqlite \
     && php artisan key:generate \
     && php artisan migrate --force
 
-EXPOSE 9100
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=9100"]
+EXPOSE 8080
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
