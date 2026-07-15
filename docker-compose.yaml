@@ -1,0 +1,11 @@
+services:
+    app:
+        build: .
+        ports:
+            - "9200:9100"
+        volumes:
+            - db_data:/data
+        restart: unless-stopped
+
+volumes:
+    db_data:
