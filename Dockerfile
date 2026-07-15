@@ -16,8 +16,8 @@ COPY --from=build /app/public/build ./public/build
 
 RUN composer install --no-dev --optimize-autoloader
 
-COPY docker/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+RUN touch database/database.sqlite \
+    && php artisan migrate --force
 
 CMD ["/entrypoint.sh"]
 
