@@ -2,9 +2,14 @@ services:
     app:
         build: .
         ports:
-            - "9200:9100"
+            - "9200:8000"
+        environment:
+            APP_ENV: production
+            APP_DEBUG: "false"
+            APP_URL: http://YOUR_SERVER_IP_OR_DOMAIN:9200
+            APP_KEY: base64:PASTE_A_GENERATED_KEY_HERE
         volumes:
-            - db_data:/data
+            - db_data:/app/database
         restart: unless-stopped
 
 volumes:
